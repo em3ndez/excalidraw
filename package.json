@@ -36,7 +36,7 @@
     "nanoid": "2.1.11",
     "node-sass": "4.14.1",
     "open-color": "1.7.0",
-    "pako": "1.0.11",
+    "pako": "2.1.0",
     "png-chunk-text": "1.0.0",
     "png-chunks-encode": "1.0.0",
     "png-chunks-extract": "1.0.0",
@@ -51,7 +51,7 @@
   },
   "devDependencies": {
     "@types/lodash.throttle": "4.1.6",
-    "@types/pako": "1.0.1",
+    "@types/pako": "2.0.0",
     "eslint-config-prettier": "7.0.0",
     "eslint-plugin-prettier": "3.3.0",
     "firebase-tools": "8.19.0",
