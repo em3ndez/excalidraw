@@ -1,40 +1,64 @@
 {
-  "extends": ["prettier", "react-app"],
-  "plugins": ["prettier"],
+  "extends": ["@excalidraw/eslint-config", "react-app"],
   "rules": {
-    "curly": "warn",
-    "dot-notation": "warn",
+    "import/order": [
+      "warn",
+      {
+        "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
+        "pathGroups": [
+          {
+            "pattern": "@excalidraw/**",
+            "group": "external",
+            "position": "after"
+          }
+        ],
+        "newlines-between": "always-and-inside-groups",
+        "warnOnUnassignedImports": true
+      }
+    ],
     "import/no-anonymous-default-export": "off",
-    "no-console": [
-      "warn",
+    "no-restricted-globals": "off",
+    "@typescript-eslint/consistent-type-imports": [
+      "error",
       {
-        "allow": ["warn", "error", "info"]
+        "prefer": "type-imports",
+        "disallowTypeAnnotations": false,
+        "fixStyle": "separate-type-imports"
       }
     ],
-    "no-else-return": "warn",
-    "no-lonely-if": "warn",
-    "no-restricted-syntax": [
-      "warn",
+    "no-restricted-imports": [
+      "error",
       {
-        "message": "Use 't(...)' instead of literal text in JSX",
-        "selector": "JSXText[value=/\\w/]"
+        "name": "jotai",
+        "message": "Do not import from \"jotai\" directly. Use our app-specific modules (\"editor-jotai\" or \"app-jotai\")."
       }
     ],
-    "no-unneeded-ternary": "warn",
-    "no-unused-expressions": "warn",
-    "no-unused-vars": "warn",
-    "no-useless-return": "warn",
-    "no-var": "warn",
-    "object-shorthand": "warn",
-    "one-var": ["warn", "never"],
-    "prefer-arrow-callback": "warn",
-    "prefer-const": [
-      "warn",
+    "react/jsx-no-target-blank": [
+      "error",
       {
-        "destructuring": "all"
+        "allowReferrer": true
       }
-    ],
-    "prefer-template": "warn",
-    "prettier/prettier": "warn"
-  }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["packages/excalidraw/**/*.{ts,tsx}"],
+      "excludedFiles": ["packages/excalidraw/**/*.test.{ts,tsx}", "packages/excalidraw/**/*.test.*.{ts,tsx}"],
+      "rules": {
+        "@typescript-eslint/no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": ["@excalidraw/excalidraw"],
+                "message": "Do not import from the barrel 'index.tsx' files. Use direct relative imports to the specific module instead.",
+                "allowTypeImports": true
+              }
+            ],
+            "paths": [".", "..", "../..", "../../..", "../../../..", "../../../../..", "../index", "../../index", "../../../index", "../../../../index"]
+          }
+        ]
+      }
+    }
+  ]
 }

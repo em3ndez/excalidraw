@@ -5,9 +5,11 @@
 .env.test.local
 .envrc
 .eslintcache
+.history
 .idea
 .vercel
 .vscode
+.yarn
 *.log
 *.tgz
 build
@@ -16,7 +18,12 @@ firebase
 logs
 node_modules
 npm-debug.log*
-static
+package-lock.json
 yarn-debug.log*
 yarn-error.log*
-yarn.lock
+packages/excalidraw/types
+coverage
+dev-dist
+html
+meta*.json
+.claude
